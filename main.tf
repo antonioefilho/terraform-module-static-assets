@@ -165,6 +165,6 @@ resource "google_storage_bucket" "set_fine_grained" {
 
   depends_on = [
     google_storage_bucket.static,
-    module.static_site.module.load_balancer.google_compute_global_forwarding_rule.http  # ESPERA O LB FICAR PRONTO
+    google_compute_global_forwarding_rule.http  # ESPERA O LB FICAR PRONTO
   ]
 }
