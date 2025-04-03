@@ -163,5 +163,5 @@ resource "google_storage_bucket" "set_fine_grained" {
 
   uniform_bucket_level_access = false  # MUDA PARA FINE-GRAINED NO FINAL
 
-  depends_on = google_compute_global_forwarding_rule.http  # ESPERA O LB FICAR PRONTO
+  depends_on = [google_compute_global_forwarding_rule.http]  # ESPERA O LB FICAR PRONTO
 }
