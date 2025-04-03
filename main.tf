@@ -83,16 +83,22 @@ resource "google_storage_bucket_object" "not_found" {
 # SET GLOBAL READ PERMISSIONS
 # ------------------------------------------------------------------------------
 
-resource "google_storage_object_acl" "index_acl" {
-  bucket      = module.static_site.website_bucket_name
-  object      = google_storage_bucket_object.index.name
-  role_entity = ["READER:allUsers"]
-}
+#resource "google_storage_object_acl" "index_acl" {
+#  bucket      = module.static_site.website_bucket_name
+#  object      = google_storage_bucket_object.index.name
+#  role_entity = ["READER:allUsers"]
+#}
+#
+#resource "google_storage_object_acl" "not_found_acl" {
+#  bucket      = module.static_site.website_bucket_name
+#  object      = google_storage_bucket_object.not_found.name
+#  role_entity = ["READER:allUsers"]
+#}
 
-resource "google_storage_object_acl" "not_found_acl" {
-  bucket      = module.static_site.website_bucket_name
-  object      = google_storage_bucket_object.not_found.name
-  role_entity = ["READER:allUsers"]
+resource "google_storage_bucket_iam_member" "object_viewer" {
+  bucket = module.static_site.website_bucket_name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
 }
 
 # ------------------------------------------------------------------------------

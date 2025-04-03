@@ -77,10 +77,16 @@ resource "google_storage_bucket" "website" {
 # CONFIGURE BUCKET ACLS
 # ------------------------------------------------------------------------------
 
-resource "google_storage_default_object_acl" "website_acl" {
-  provider    = google-beta
-  bucket      = google_storage_bucket.website.name
-  role_entity = var.website_acls
+#resource "google_storage_default_object_acl" "website_acl" {
+#  provider    = google-beta
+#  bucket      = google_storage_bucket.website.name
+#  role_entity = var.website_acls
+#}
+
+resource "google_storage_bucket_iam_member" "website_acl" {
+  bucket = google_storage_bucket.website.name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
