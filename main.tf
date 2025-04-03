@@ -153,15 +153,3 @@ resource "google_compute_ssl_certificate" "certificate" {
     create_before_destroy = true
   }
 }
-
-
-resource "google_storage_bucket" "set_fine_grained" {
-  name     = google_storage_bucket.static.name
-  location = google_storage_bucket.static.location
-
-  storage_class = google_storage_bucket.static.storage_class
-
-  uniform_bucket_level_access = false  # MUDA PARA FINE-GRAINED NO FINAL
-
-  depends_on = [google_compute_global_forwarding_rule.http]  # ESPERA O LB FICAR PRONTO
-}
