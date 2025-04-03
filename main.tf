@@ -10,6 +10,8 @@ terraform {
   # forwards compatible with 1.0.x code.
   required_version = ">= 0.12.26"
 
+  backend "gcs" {}
+
   required_providers {
     google-beta = {
       source  = "hashicorp/google-beta"
